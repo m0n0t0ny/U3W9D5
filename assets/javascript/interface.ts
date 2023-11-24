@@ -85,13 +85,13 @@ function addcredit(amount: number): void {
 function call(contact: string): void {
   switch (contact) {
     case "Stefano Miceli":
-      console.log(`calling ${contact}`);
+      console.log(`Chiamando ${contact}`);
       break;
     case "404":
-      console.log(`calling ${contact}`);
+      console.log(`Chiamando ${contact}`);
       break;
     case "Dario Del Giudice":
-      console.log(`calling ${contact}`);
+      console.log(`Chiamando ${contact}`);
       break;
   }
 }
@@ -105,7 +105,7 @@ function startCall(): void {
     const duration = document.getElementById("duration") as HTMLDivElement;
     if (FirstUser.carica < 0.1) {
       clearInterval(callCounterInterval);
-      duration.innerText = "Call Ended (insufficient charge)";
+      duration.innerText = "Chiamata Terminata (Credito insufficiente)";
     } else {
       seconds++;
       if (duration) {
@@ -116,7 +116,7 @@ function startCall(): void {
 
       if (FirstUser.carica < 0) {
         clearInterval(callCounterInterval);
-        console.log("Call Ended (insufficient charge)");
+        console.log("Chiamata Terminata (Credito insufficiente)");
       }
     }
   }, 1000);
@@ -126,9 +126,7 @@ function endCall(): void {
   if (callCounterInterval) {
     clearInterval(callCounterInterval);
     FirstUser.numeroChiamate++;
-    console.log("Call Ended");
-  } else {
-    console.log("No active call to end.");
+    console.log("Chiamata Terminata");
   }
 }
 

@@ -59,7 +59,7 @@ button {
   background-image: url(../img/bg.jpg);
   background-size: cover;
   background-position: center;
-  filter: blur(10px);
+  filter: blur(5px) brightness(70%);
 }
 
 /* !------------ HOME ------------ */
