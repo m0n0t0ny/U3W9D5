@@ -1,5 +1,6 @@
 var User = /** @class */ (function () {
     function User(nome, cognome, numeroTelefono, carica, numeroChiamate) {
+        this.carica = 0;
         this.nome = nome;
         this.cognome = cognome;
         this.numeroTelefono = numeroTelefono;
@@ -35,10 +36,14 @@ var User = /** @class */ (function () {
     };
     return User;
 }());
-var FirstUser = new User("John", "Doe", "123-456-7890", 16.0, 12);
+var FirstUser = new User("John", "Doe", "123-456-7890", 0, 12);
 console.log("User: ".concat(FirstUser.nome, " ").concat(FirstUser.cognome));
-FirstUser.numero404();
 FirstUser.chiamata(5);
-FirstUser.numero404();
-FirstUser.getNumeroChiamate();
+console.log("Cronologia chiamate: ".concat(FirstUser.getNumeroChiamate()));
 FirstUser.azzeraChiamate();
+var credit = document.getElementById("credit");
+function addcredit(amount) {
+    FirstUser.carica = FirstUser.carica + amount;
+    credit.innerText = FirstUser.carica.toString();
+    FirstUser.numero404();
+}

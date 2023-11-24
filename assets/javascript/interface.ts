@@ -11,7 +11,7 @@ class User implements Smartphone {
   nome: string;
   cognome: string;
   numeroTelefono: string;
-  carica: number;
+  carica: number = 0;
   numeroChiamate: number;
 
   constructor(
@@ -62,10 +62,16 @@ class User implements Smartphone {
   }
 }
 
-const FirstUser = new User("John", "Doe", "123-456-7890", 16.0, 12);
+const FirstUser = new User("John", "Doe", "123-456-7890", 0, 12);
 console.log(`User: ${FirstUser.nome} ${FirstUser.cognome}`);
-FirstUser.numero404();
 FirstUser.chiamata(5);
-FirstUser.numero404();
-FirstUser.getNumeroChiamate();
+console.log(`Cronologia chiamate: ${FirstUser.getNumeroChiamate()}`);
 FirstUser.azzeraChiamate();
+
+const credit = document.getElementById("credit") as HTMLTextAreaElement;
+
+function addcredit(amount: number): void {
+  FirstUser.carica = FirstUser.carica + amount;
+  credit.innerText = FirstUser.carica.toString();
+  FirstUser.numero404();
+}
