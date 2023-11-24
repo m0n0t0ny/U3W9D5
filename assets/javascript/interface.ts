@@ -7,6 +7,13 @@ interface Smartphone {
   chiamata(minutiDurata: number): void;
 }
 
+function updateCredit() {
+  const credit = document.getElementById("credit");
+  if (credit) {
+    credit.innerText = `${FirstUser.carica.toFixed(2)}`;
+  }
+}
+
 class User implements Smartphone {
   nome: string;
   cognome: string;
@@ -49,7 +56,7 @@ class User implements Smartphone {
   }
 
   numero404(): void {
-    console.log(`Credito residuo: ${this.carica}€`);
+    console.log(`${this.carica.toFixed(2)}`);
   }
 
   getNumeroChiamate(): void {
@@ -62,16 +69,69 @@ class User implements Smartphone {
   }
 }
 
-const FirstUser = new User("John", "Doe", "123-456-7890", 0, 12);
-console.log(`User: ${FirstUser.nome} ${FirstUser.cognome}`);
-FirstUser.chiamata(5);
-console.log(`Cronologia chiamate: ${FirstUser.getNumeroChiamate()}`);
-FirstUser.azzeraChiamate();
+const FirstUser = new User("Stefano", "Miceli", "123-456-7890", 0, 0);
+// console.log(`User: ${FirstUser.nome} ${FirstUser.cognome}`);
+// FirstUser.chiamata(5);
+// console.log(`Cronologia chiamate: ${FirstUser.getNumeroChiamate()}`);
+// FirstUser.azzeraChiamate();
 
-const credit = document.getElementById("credit") as HTMLTextAreaElement;
+const credit = document.getElementById("credit") as HTMLDivElement;
 
 function addcredit(amount: number): void {
-  FirstUser.carica = FirstUser.carica + amount;
-  credit.innerText = FirstUser.carica.toString();
-  FirstUser.numero404();
+  FirstUser.carica += amount;
+  credit.innerText = `${FirstUser.carica.toFixed(2)}`;
 }
+
+function call(contact: string): void {
+  switch (contact) {
+    case "Stefano Miceli":
+      console.log(`calling ${contact}`);
+      break;
+    case "404":
+      console.log(`calling ${contact}`);
+      break;
+    case "Dario Del Giudice":
+      console.log(`calling ${contact}`);
+      break;
+  }
+}
+
+let callCounterInterval: any | undefined;
+
+function startCall(): void {
+  let seconds = 0;
+
+  callCounterInterval = setInterval(() => {
+    const duration = document.getElementById("duration") as HTMLDivElement;
+    if (FirstUser.carica < 0.1) {
+      clearInterval(callCounterInterval);
+      duration.innerText = "Call Ended (insufficient charge)";
+    } else {
+      seconds++;
+      if (duration) {
+        duration.innerText = `Durata: ${seconds} seconds`;
+      }
+
+      FirstUser.carica -= 0.2;
+
+      if (FirstUser.carica < 0) {
+        clearInterval(callCounterInterval);
+        console.log("Call Ended (insufficient charge)");
+      }
+    }
+  }, 1000);
+}
+
+function endCall(): void {
+  if (callCounterInterval) {
+    clearInterval(callCounterInterval);
+    FirstUser.numeroChiamate++;
+    console.log("Call Ended");
+  } else {
+    console.log("No active call to end.");
+  }
+}
+
+startCall();
+
+setTimeout(endCall, 10000);

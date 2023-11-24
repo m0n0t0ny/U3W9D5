@@ -67,11 +67,14 @@
     <link rel="stylesheet" href="./assets/styles/style.css" />
   </head>
 
-  <body class="text-bg-dark d-flex align-items-center justify-content-center">
+  <body
+    class="text-dark d-flex align-items-center justify-content-center position-relative overflow-hidden"
+  >
+    <div class="filter"></div>
     <main>
       <div
         id="smartphone"
-        class="position-relative rounded-5 border border-2 border-secondary d-flex flex-column align-items-center overflow-hidden"
+        class="shadow-lg position-relative rounded-5 border border-3 border-secondary d-flex flex-column align-items-center overflow-hidden"
       >
         <div
           id="status-bar"
@@ -95,7 +98,8 @@
             id="back-btn"
             src="./assets/img/navigation/back.svg"
             alt="Back button"
-          /><img
+          />
+          <img
             id="home-btn"
             src="./assets/img/navigation/home.svg"
             alt="Home button"
@@ -109,7 +113,7 @@
 
         <!--!---------- HOME ------------>
 
-        <div id="home" class="contianer mt-5 d-none">
+        <div id="home" class="contianer mt-5">
           <div
             class="row row-1 d-flex align-items-center justify-content-center p-3"
           >
@@ -430,12 +434,72 @@
           </div>
         </div>
 
-        <!--!---------- BROWSER ------------>
+        <!--!---------- CONTACTS ------------>
 
         <div
           id="contacts"
-          class="position-relative text-bg-dark d-flex flex-column align-items-start overflow-hidden p-3 pt-0 h-100 w-100 mt-3"
+          class="position-relative text-bg-dark d-flex flex-column align-items-start overflow-hidden p-3 pt-0 h-100 w-100 mt-3 d-none"
         >
+          <div
+            id="favourite-contacts"
+            class="position-absolute bottom-0 start-0 end-0 mb-5 w-100"
+          >
+            <div class="bar text-center text-secondary-emphasis bg-white mb-3">
+              Contatti Preferiti <i class="fas fa-star"></i>
+            </div>
+            <div
+              class="contacts d-flex align-items-center justify-content-sm-around"
+            >
+              <button
+                id="favourite-contact-1"
+                class="caller text-white d-flex flex-column align-items-center justify-content-center gap-1"
+              >
+                <div
+                  class="caller-img rounded-circle bg-primary d-flex align-items-center justify-content-center"
+                >
+                  <img src="./assets/img/contacts/Stefano.png" alt="" />
+                </div>
+                <div id="stefano" class="">
+                  <input type="number" value="1" class="d-none" />
+                  <div class="caller-name small text-center">
+                    Stefano<br />Miceli
+                  </div>
+                </div>
+              </button>
+              <button
+                id="favourite-contact-2"
+                class="caller text-white d-flex flex-column align-items-center justify-content-center gap-1"
+              >
+                <div
+                  class="caller-img rounded-circle bg-primary d-flex align-items-center justify-content-center"
+                >
+                  <i class="fas fa-user"></i>
+                </div>
+                <div id="credito" class="">
+                  <input type="number" value="2" class="d-none" />
+                  <div class="caller-name small text-center">
+                    Credito<br />Residuo
+                  </div>
+                </div>
+              </button>
+              <button
+                id="favourite-contact-3"
+                class="caller text-white d-flex flex-column align-items-center justify-content-center gap-1"
+              >
+                <div
+                  class="caller-img rounded-circle bg-primary d-flex align-items-center justify-content-center"
+                >
+                  <img src="./assets/img/contacts/Dario.png" alt="" />
+                </div>
+                <div id="dario" class="">
+                  <input type="number" value="3" class="d-none" />
+                  <div class="caller-name small text-center">
+                    Dario<br />Del Gi...
+                  </div>
+                </div>
+              </button>
+            </div>
+          </div>
           <div class="recent-calls mt-3">
             <div
               class="caller d-flex align-items-center justify-content-center gap-3"
@@ -450,11 +514,40 @@
                 <div class="call-details small">
                   <i class="fas fa-arrow-up"></i>
                   <span class="device">Cellulare</span>
-                  <span class="duration">00:00</span>
+                  <span id="lasted">00:00</span>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+
+        <!--!---------- CALL ------------>
+
+        <div
+          id="call"
+          class="position-relative text-bg-dark d-flex flex-column align-items-center overflow-hidden p-3 pt-0 h-100 w-100 mt-3 d-none"
+        >
+          <div
+            id="favourite-contact-1"
+            class="caller d-flex flex-column align-items-center justify-content-center gap-1 mt-5"
+          >
+            <div
+              class="caller-img rounded-circle bg-primary d-flex align-items-center justify-content-center"
+            >
+              <img src="./assets/img/contacts/contact-placeholder.png" alt="" />
+            </div>
+            <div id="stefano" class="text-center">
+              <input type="number" value="1" class="d-none" />
+              <div class="caller-name small text-center fs-2">
+                Stefano Miceli
+              </div>
+              <div>Cellulare <span id="phone-number"></span></div>
+              <div id="duration" class="small"></div>
+            </div>
+          </div>
+          <button id="end-call-btn" class="rounded-circle btn btn-danger">
+            <img src="./assets/img/call-end.svg" alt="" />
+          </button>
         </div>
       </div>
     </main>
